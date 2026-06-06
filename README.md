@@ -32,15 +32,21 @@ A three-tier application demonstrating DevOps practices with MySQL database, Nod
 ```
 Expense-Basic-Flow/
 ├── README.md                          # Project overview
+├── QUICKSTART.md                      # Quick start guide
 ├── docs/                              # Documentation
 │   ├── ARCHITECTURE.md               # System design
 │   ├── DATABASE_SETUP.md             # MySQL setup guide
 │   ├── BACKEND_SETUP.md              # NodeJS backend guide
-│   └── FRONTEND_SETUP.md             # Nginx frontend guide
+│   ├── FRONTEND_SETUP.md             # Nginx frontend guide
+│   ├── TROUBLESHOOTING.md            # Troubleshooting guide
+│   └── UI_GUIDE.md                   # UI features & screenshots
 ├── config/                            # Configuration files
 │   ├── backend.service.example       # SystemD service file
 │   ├── expense.conf.example          # Nginx configuration
 │   └── schema.sql.example            # Database schema
+├── screenshots/                       # UI screenshots
+│   ├── expense-app-home.png          # Login/home page
+│   └── add-view-expenses.png         # Expenses management
 ├── .gitignore                         # Git ignore file
 └── .git/                              # Git repository
 ```
@@ -82,6 +88,25 @@ curl http://<backend-ip>:8080/health
 # Check Frontend
 curl http://<frontend-ip>/
 ```
+
+## Troubleshooting
+
+For common issues and solutions, see [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md):
+- MySQL/Database issues
+- Backend (NodeJS) issues
+- Frontend (Nginx) issues
+- Network & connectivity issues
+- Application problems
+- Performance optimization
+
+## UI & Screenshots
+
+For information about the application UI and features, see [UI_GUIDE.md](docs/UI_GUIDE.md):
+- Application screenshots
+- UI components and features
+- User workflows
+- API integration points
+- Browser compatibility
 
 ## Git Management
 
