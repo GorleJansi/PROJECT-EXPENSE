@@ -1,0 +1,61 @@
+-- Sample Database Schema for Expense Application
+-- This is a reference schema. The actual schema will be provided in /app/schema/backend.sql
+
+-- Create database
+CREATE DATABASE IF NOT EXISTS expense;
+USE expense;
+
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Categories table
+CREATE TABLE IF NOT EXISTS categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(200),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Expenses table
+CREATE TABLE IF NOT EXISTS expenses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    description VARCHAR(500),
+    expense_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
+);
+
+-- Create indexes for better query performance
+CREATE INDEX idx_user_expenses ON expenses(user_id);
+CREATE INDEX idx_category_expenses ON expenses(category_id);
+CREATE INDEX idx_expense_date ON expenses(expense_date);
+
+-- Insert sample categories
+INSERT INTO categories (name, description) VALUES
+    ('Food', 'Food and dining expenses'),
+    ('Transport', 'Travel and transportation'),
+    ('Entertainment', 'Movies, games, and entertainment'),
+    ('Utilities', 'Bills and utility payments'),
+    ('Other', 'Miscellaneous expenses');
+
+-- Sample user (for testing - remove in production)
+INSERT INTO users (username, email, password) VALUES
+    ('admin', 'admin@expense.local', 'hashed_password_here');
+
+-- Grant privileges to application user
+-- Run this on the actual server:
+-- CREATE USER 'expense_app'@'<backend-ip>' IDENTIFIED BY 'password123';
+-- GRANT ALL PRIVILEGES ON expense.* TO 'expense_app'@'<backend-ip>';
+-- FLUSH PRIVILEGES;
