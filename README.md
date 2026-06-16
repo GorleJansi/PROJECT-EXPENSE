@@ -64,10 +64,6 @@ Expense-Basic-Flow/
 2. **Backend Setup** - See [BACKEND_SETUP.md](docs/BACKEND_SETUP.md)
 3. **Frontend Setup** - See [FRONTEND_SETUP.md](docs/FRONTEND_SETUP.md)
 
-## Default Credentials
-
-- **MySQL Root Password:** `ExpenseApp@1`
-- **Application User:** `expense` (daemon user)
 
 ## Ports
 
