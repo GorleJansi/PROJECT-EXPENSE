@@ -117,4 +117,3 @@ All three services must be running for the application to function properly.
 - **High Availability:** Each tier can be deployed separately
 - **Scalability:** Backend can have multiple instances behind load balancer
 - **Security:** Database should not be exposed to frontend directly
-- **Firewall:** Restrict MySQL port to backend server only
